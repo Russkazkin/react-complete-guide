@@ -1,5 +1,5 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "env": {
         "browser": true,
         "commonjs": true,
@@ -10,7 +10,7 @@
         "react",
         "prettier"
     ],
-    "extends": ["airbnb","plugin:prettier/recommended", "plugin:react/recommended", "eslint:recommended"],
+    "extends": ["airbnb", "airbnb/hooks", "plugin:prettier/recommended", "plugin:react/recommended", "eslint:recommended"],
     "rules": {
         "quotes": [1, "single", "avoid-escape"],
         "react/prop-types": 0,

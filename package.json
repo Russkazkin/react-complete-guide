@@ -36,8 +36,19 @@
     ]
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.16.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb": "19.0.1",
     "eslint-config-airbnb-base": "15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "object.assign": "^4.1.2",
-    "object.entries": "^1.1.5"
+    "object.entries": "^1.1.5",
+    "prettier": "^2.4.1"
   }
 }
