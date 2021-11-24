@@ -25,6 +25,10 @@
         "eqeqeq": 2,
         "react/react-in-jsx-scope": 0,
         "import/prefer-default-export": 1,
-        "react/forbid-prop-types": "off"
+        "react/forbid-prop-types": "off",
+        "react/function-component-definition": [2, {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+        }]
     }
 }
