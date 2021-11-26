@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^5.9.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -12,9 +13,9 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,6 +38,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",
+    "autoprefixer": "^9",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "eslint": "^8.2.0",
     "eslint-config-airbnb": "19.0.1",
@@ -50,6 +52,8 @@
     "node-sass": "4.14.1",
     "object.assign": "^4.1.2",
     "object.entries": "^1.1.5",
-    "prettier": "^2.4.1"
+    "postcss": "^7",
+    "prettier": "^2.4.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
