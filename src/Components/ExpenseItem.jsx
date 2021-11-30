@@ -1,16 +1,13 @@
 import React from 'react';
 import './ExpenseItem.sass';
 
-const ExpenseItem = () => {
-  const expanseDate = new Date(2021, 10, 29);
-  const expanseTitle = 'Car Insurance';
-  const expanseAmount = 256.78;
+const ExpenseItem = ({ title, amount, date }) => {
   return (
     <div className="expense-item">
-      <div>{expanseDate.toISOString()}</div>
+      <div>{date}</div>
       <div className="expense-item__description">
-        <h2>{expanseTitle}</h2>
-        <div className="expense-item__price">${expanseAmount}</div>
+        <h2>{title}</h2>
+        <div className="expense-item__price">${amount}</div>
       </div>
     </div>
   );
