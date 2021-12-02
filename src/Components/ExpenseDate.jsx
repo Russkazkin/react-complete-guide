@@ -1,4 +1,5 @@
 import React from 'react';
+import './ExpenseDate.sass';
 
 /**
  * @param {Date} date
@@ -9,10 +10,10 @@ const ExpenseDate = ({ date }) => {
   const month = date.toLocaleString('en-EN', { month: 'long' });
   const day = date.toLocaleString('en-EN', { day: '2-digit' });
   return (
-    <div>
-      <div>{month}</div>
-      <div>{day}</div>
-      <div>{date.getFullYear()}</div>
+    <div className="expense-date">
+      <div className="expense-date__month">{month}</div>
+      <div className="expense-date__day">{day}</div>
+      <div className="expense-date__year">{date.getFullYear()}</div>
     </div>
   );
 };
