@@ -2,6 +2,7 @@ import React from 'react';
 import { uniqueId } from 'lodash';
 import ExpenseItem from './ExpenseItem';
 import './Expenses.sass';
+import Card from './Card';
 
 const Expenses = () => {
   const expenses = [
@@ -10,11 +11,13 @@ const Expenses = () => {
     { title: 'Food', amount: 16.75, date: new Date(2021, 10, 10) },
   ];
   return (
-    <div className="expenses">
+    <>
       {expenses.map((item) => (
-        <ExpenseItem key={uniqueId('expense')} title={item.title} amount={item.amount} date={item.date} />
+        <Card className="expense-item" key={uniqueId('expense')}>
+          <ExpenseItem title={item.title} amount={item.amount} date={item.date} />
+        </Card>
       ))}
-    </div>
+    </>
   );
 };
 
