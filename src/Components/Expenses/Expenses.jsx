@@ -2,7 +2,7 @@ import React from 'react';
 import { uniqueId } from 'lodash';
 import ExpenseItem from './ExpenseItem';
 import './Expenses.sass';
-import Card from './Card';
+import Card from '../UI/Card';
 
 const Expenses = () => {
   const expenses = [

@@ -1,6 +1,6 @@
 import React from 'react';
-import Expenses from './Components/Expenses';
-import Card from './Components/Card';
+import Expenses from './Components/Expenses/Expenses';
+import Card from './Components/UI/Card';
 
 const App = () => {
   return (
