@@ -1,11 +1,12 @@
 import React from 'react';
 import Expenses from './Components/Expenses/Expenses';
 import Card from './Components/UI/Card';
+import NewExpense from './Components/NewExpense/NewExpense';
 
 const App = () => {
   return (
     <div>
-      <h2>Let&apos;s get started!</h2>
+      <NewExpense />
       <Card className="expenses">
         <Expenses />
       </Card>
