@@ -26,6 +26,11 @@ const ExpenseForm = ({ item }) => {
     event.preventDefault();
     const data = { ...userInput, date: new Date(userInput.date) };
     console.log(data);
+    setUserInput({
+      title: '',
+      amount: '',
+      date: '',
+    });
   };
   return (
     <form onSubmit={submitHandler}>
