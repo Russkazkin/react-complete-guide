@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { uniqueId } from 'lodash';
+import { isEmpty, uniqueId } from 'lodash';
 import ExpenseItem from './ExpenseItem';
 import './Expenses.sass';
 import Card from '../UI/Card';
@@ -16,9 +16,13 @@ const Expenses = ({ expenses }) => {
       <div>
         <ExpenseFilter onChangeFilter={filterChangeHandler} year={filteredYear} />
       </div>
-      {filteredExpenses.map((item) => (
-        <ExpenseItem title={item.title} amount={item.amount} date={item.date} key={item.id} />
-      ))}
+      {isEmpty(filteredExpenses) ? (
+        <div className="expenses__no-expenses">No expenses yet.</div>
+      ) : (
+        filteredExpenses.map((item) => {
+          return <ExpenseItem title={item.title} amount={item.amount} date={item.date} key={item.id} />;
+        })
+      )}
     </>
   );
 };
