@@ -5,8 +5,8 @@ import NewExpense from './Components/NewExpense/NewExpense';
 
 const DUMMY_EXPENSES = [
   { id: 'e1', title: 'Car Insurance', amount: 256.78, date: new Date(2021, 10, 29) },
-  { id: 'e2', title: 'Doctor', amount: 500, date: new Date(2021, 10, 26) },
-  { id: 'e3', title: 'Food', amount: 16.75, date: new Date(2021, 10, 10) },
+  { id: 'e2', title: 'Doctor', amount: 500, date: new Date(2020, 10, 26) },
+  { id: 'e3', title: 'Food', amount: 16.75, date: new Date(2019, 10, 10) },
 ];
 
 const App = () => {
