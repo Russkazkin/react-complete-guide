@@ -11,18 +11,18 @@ const Expenses = ({ expenses }) => {
     setFilteredYear(selectedYear);
   };
   const filteredExpenses = expenses.filter((item) => item.date.getFullYear().toString() === filteredYear);
+  let expensesContent = <div className="expenses__no-expenses">No expenses yet.</div>;
+  if (!isEmpty(filteredExpenses)) {
+    expensesContent = filteredExpenses.map((item) => {
+      return <ExpenseItem title={item.title} amount={item.amount} date={item.date} key={item.id} />;
+    });
+  }
   return (
     <>
       <div>
         <ExpenseFilter onChangeFilter={filterChangeHandler} year={filteredYear} />
       </div>
-      {isEmpty(filteredExpenses) ? (
-        <div className="expenses__no-expenses">No expenses yet.</div>
-      ) : (
-        filteredExpenses.map((item) => {
-          return <ExpenseItem title={item.title} amount={item.amount} date={item.date} key={item.id} />;
-        })
-      )}
+      {expensesContent}
     </>
   );
 };
