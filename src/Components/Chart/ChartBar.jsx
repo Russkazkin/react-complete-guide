@@ -4,7 +4,7 @@ import './ChartBar.sass';
 const ChartBar = ({ value, maxValue, label }) => {
   let barFillHeight = '0%';
   if (maxValue > 0) {
-    barFillHeight = `${Math.round(value / maxValue) * 100}%`;
+    barFillHeight = `${Math.round((value / maxValue) * 100)}%`;
   }
   return (
     <div className="chart-bar">
