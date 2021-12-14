@@ -1,25 +1,22 @@
 import React, { useState } from 'react';
-import { uniqueId } from 'lodash';
-import ExpenseItem from './ExpenseItem';
 import './Expenses.sass';
-import Card from '../UI/Card';
 import ExpenseFilter from './ExpenseFilter';
+import ExpensesList from './ExpensesList';
+import ExpensesChart from './ExpensesChart';
 
 const Expenses = ({ expenses }) => {
   const [filteredYear, setFilteredYear] = useState('2021');
   const filterChangeHandler = (selectedYear) => {
     setFilteredYear(selectedYear);
   };
+  const filteredExpenses = expenses.filter((item) => item.date.getFullYear().toString() === filteredYear);
   return (
     <>
       <div>
         <ExpenseFilter onChangeFilter={filterChangeHandler} year={filteredYear} />
       </div>
-      {expenses.map((item) => (
-        <Card className="expense-item" key={uniqueId('expense')}>
-          <ExpenseItem title={item.title} amount={item.amount} date={item.date} />
-        </Card>
-      ))}
+      <ExpensesChart expenses={filteredExpenses} />
+      <ExpensesList filteredExpenses={filteredExpenses} />
     </>
   );
 };
