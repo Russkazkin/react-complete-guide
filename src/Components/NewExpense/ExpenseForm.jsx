@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './ExpenseForm.sass';
 import { trim } from 'lodash';
+import bem from '../../helpers/bem';
+
+const bemClass = bem('new-expense');
 
 const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
   const [userInput, setUserInput] = useState({
@@ -41,21 +44,21 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
   };
   return (
     <form onSubmit={submitHandler}>
-      <div className="new-expense__controls">
-        <div className="new-expense__control">
+      <div className={bemClass('controls')}>
+        <div className={bemClass('control')}>
           <label htmlFor="title">Title</label>
           <input
-            style={{ borderColor: !isValid && trim(userInput.title) === '' ? 'red' : 'transparent' }}
+            className={bemClass('control-input', { error: !isValid && trim(userInput.title) === '' })}
             id="title"
             type="text"
             onChange={titleChangeHandler}
             value={userInput.title}
           />
         </div>
-        <div className="new-expense__control">
+        <div className={bemClass('control')}>
           <label htmlFor="amount">Amount</label>
           <input
-            style={{ borderColor: !isValid && trim(userInput.amount) === '' ? 'red' : 'transparent' }}
+            className={bemClass('control-input', { error: !isValid && trim(userInput.amount) === '' })}
             id="amount"
             type="number"
             min="0.01"
@@ -64,10 +67,10 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
             value={userInput.amount}
           />
         </div>
-        <div className="new-expense__control">
+        <div className={bemClass('control')}>
           <label htmlFor="date">Date</label>
           <input
-            style={{ borderColor: !isValid && trim(userInput.date) === '' ? 'red' : 'transparent' }}
+            className={bemClass('control-input', { error: !isValid && trim(userInput.date) === '' })}
             id="date"
             type="date"
             min="2019-01-01"
@@ -77,7 +80,7 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
           />
         </div>
       </div>
-      <div className="new-expense__actions">
+      <div className={bemClass('actions')}>
         <button onClick={onCancel} type="button">
           Cancel
         </button>
