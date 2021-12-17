@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './NewExpense.sass';
 import { uniqueId } from 'lodash';
 import ExpenseForm from './ExpenseForm';
+import Button from '../UI/Button';
 
 const NewExpense = ({ onAddExpense }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -16,9 +17,9 @@ const NewExpense = ({ onAddExpense }) => {
     <div className="new-expense">
       {isEditing && <ExpenseForm onCancel={stopEditingHandler} onSaveExpenseData={saveExpenseDataHandler} />}
       {!isEditing && (
-        <button type="button" onClick={startEditingHandler}>
+        <Button type="button" onClick={startEditingHandler}>
           Add New Expense
-        </button>
+        </Button>
       )}
     </div>
   );

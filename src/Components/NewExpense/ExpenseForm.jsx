@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './ExpenseForm.sass';
 import { trim } from 'lodash';
 import bem from '../../helpers/bem';
+import Button from '../UI/Button';
 
 const bemClass = bem('new-expense');
 
@@ -81,10 +82,10 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
         </div>
       </div>
       <div className={bemClass('actions')}>
-        <button onClick={onCancel} type="button">
+        <Button onClick={onCancel} type="button">
           Cancel
-        </button>
-        <button type="submit">Add Expense</button>
+        </Button>
+        <Button type="submit">Add Expense</Button>
       </div>
     </form>
   );
