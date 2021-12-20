@@ -35,6 +35,10 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
       setIsValid(false);
       return;
     }
+    if (+userInput.amount < 0.01) {
+      setIsValid(false);
+      return;
+    }
     const data = { ...userInput, date: new Date(userInput.date) };
     onSaveExpenseData(data);
     setUserInput({
