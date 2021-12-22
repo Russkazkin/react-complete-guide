@@ -1,20 +1,24 @@
 import React from 'react';
 import Card from './Card';
 import Button from './Button';
+import classes from './ErrorModal.module.sass';
 
-const ErrorModal = ({ title, mesage }) => {
+const ErrorModal = ({ title, message }) => {
   return (
-    <Card>
-      <header>
-        <h2>{title}</h2>
-      </header>
-      <div>
-        <p>{mesage}</p>
-      </div>
-      <footer>
-        <Button>Okay</Button>
-      </footer>
-    </Card>
+    <>
+      <div className={classes.backdrop} />
+      <Card className={classes.modal}>
+        <header className={classes.header}>
+          <h2>{title}</h2>
+        </header>
+        <div className={classes.content}>
+          <p>{message}</p>
+        </div>
+        <footer className={classes.actions}>
+          <Button>Okay</Button>
+        </footer>
+      </Card>
+    </>
   );
 };
 
