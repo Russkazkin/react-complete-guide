@@ -14,6 +14,7 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
     date: '',
   });
   const [isValid, setIsValid] = useState(true);
+  const [error, setError] = useState();
 
   const titleChangeHandler = (event) => {
     setUserInput((prevState) => {
@@ -30,14 +31,23 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
       return { ...prevState, date: event.target.value };
     });
   };
+  const errorHandler = () => setError(null);
   const submitHandler = (event) => {
     event.preventDefault();
     if (trim(userInput.date) === '' || trim(userInput.amount) === '' || trim(userInput.title) === '') {
       setIsValid(false);
+      setError({
+        title: 'Invalid Input.',
+        message: 'Please fill all inputs with valid data.',
+      });
       return;
     }
     if (+userInput.amount < 0.01) {
       setIsValid(false);
+      setError({
+        title: 'Invalid Amount.',
+        message: 'Please enter valid amount (> 0.01).',
+      });
       return;
     }
     const data = { ...userInput, date: new Date(userInput.date) };
@@ -50,7 +60,7 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
   };
   return (
     <>
-      <ErrorModal title="Error" message="An error occurred" />
+      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
       <form onSubmit={submitHandler}>
         <div className={bemClass('controls')}>
           <div className={bemClass('control')}>
@@ -69,8 +79,6 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
               className={bemClass('control-input', { error: !isValid && trim(userInput.amount) === '' })}
               id="amount"
               type="number"
-              min="0.01"
-              step="0.01"
               onChange={amountChangeHandler}
               value={userInput.amount}
             />
