@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './ExpenseForm.sass';
 import { trim } from 'lodash';
 import bem from '../../helpers/bem';
@@ -8,33 +8,18 @@ import ErrorModal from '../UI/ErrorModal';
 const bemClass = bem('new-expense');
 
 const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
-  const [userInput, setUserInput] = useState({
-    title: '',
-    amount: '',
-    date: '',
-  });
+  const titleInputRef = useRef();
+  const amountInputRef = useRef();
+  const dateInputRef = useRef();
   const [isValid, setIsValid] = useState(true);
   const [error, setError] = useState();
-
-  const titleChangeHandler = (event) => {
-    setUserInput((prevState) => {
-      return { ...prevState, title: event.target.value };
-    });
-  };
-  const amountChangeHandler = (event) => {
-    setUserInput((prevState) => {
-      return { ...prevState, amount: event.target.value };
-    });
-  };
-  const dateChangeHandler = (event) => {
-    setUserInput((prevState) => {
-      return { ...prevState, date: event.target.value };
-    });
-  };
   const errorHandler = () => setError(null);
   const submitHandler = (event) => {
     event.preventDefault();
-    if (trim(userInput.date) === '' || trim(userInput.amount) === '' || trim(userInput.title) === '') {
+    const date = dateInputRef.current.value;
+    const title = titleInputRef.current.value;
+    const amount = amountInputRef.current.value;
+    if (trim(date) === '' || trim(amount) === '' || trim(title) === '') {
       setIsValid(false);
       setError({
         title: 'Invalid Input.',
@@ -42,7 +27,7 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
       });
       return;
     }
-    if (+userInput.amount < 0.01) {
+    if (+amount < 0.01) {
       setIsValid(false);
       setError({
         title: 'Invalid Amount.',
@@ -50,13 +35,8 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
       });
       return;
     }
-    const data = { ...userInput, date: new Date(userInput.date) };
+    const data = { title, amount, date: new Date(date) };
     onSaveExpenseData(data);
-    setUserInput({
-      title: '',
-      amount: '',
-      date: '',
-    });
   };
   return (
     <>
@@ -66,33 +46,30 @@ const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
           <div className={bemClass('control')}>
             <label htmlFor="title">Title</label>
             <input
-              className={bemClass('control-input', { error: !isValid && trim(userInput.title) === '' })}
+              className={bemClass('control-input', { error: !isValid })}
               id="title"
               type="text"
-              onChange={titleChangeHandler}
-              value={userInput.title}
+              ref={titleInputRef}
             />
           </div>
           <div className={bemClass('control')}>
             <label htmlFor="amount">Amount</label>
             <input
-              className={bemClass('control-input', { error: !isValid && trim(userInput.amount) === '' })}
+              className={bemClass('control-input', { error: !isValid })}
               id="amount"
               type="number"
-              onChange={amountChangeHandler}
-              value={userInput.amount}
+              ref={amountInputRef}
             />
           </div>
           <div className={bemClass('control')}>
             <label htmlFor="date">Date</label>
             <input
-              className={bemClass('control-input', { error: !isValid && trim(userInput.date) === '' })}
+              className={bemClass('control-input', { error: !isValid })}
               id="date"
               type="date"
               min="2019-01-01"
               max="2022-12-31"
-              onChange={dateChangeHandler}
-              value={userInput.date}
+              ref={dateInputRef}
             />
           </div>
         </div>
