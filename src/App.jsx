@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import Expenses from './Components/Expenses/Expenses';
-import Card from './Components/UI/Card';
-import NewExpense from './Components/NewExpense/NewExpense';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
 import MainHeader from './Components/MainHeader/MainHeader';
@@ -32,13 +29,7 @@ const App = () => {
       <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
-        {isLoggedIn && <Home onLogout={logoutHandler} />}
-        <div>
-          <NewExpense onAddExpense={addExpenseHandler} />
-          <Card className="expenses">
-            <Expenses expenses={expenses} />
-          </Card>
-        </div>
+        {isLoggedIn && <Home expenses={expenses} onAddExpense={addExpenseHandler} onLogout={logoutHandler} />}
       </main>
     </>
   );
