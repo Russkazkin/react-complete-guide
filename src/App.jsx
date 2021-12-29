@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
 import MainHeader from './Components/MainHeader/MainHeader';
@@ -13,7 +13,14 @@ const DUMMY_EXPENSES = [
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    if (localStorage.getItem('isLoggedIn') === '1') {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   const loginHandler = (email, password) => {
+    localStorage.setItem('isLoggedIn', '1');
     setIsLoggedIn(true);
   };
 
