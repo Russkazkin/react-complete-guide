@@ -25,6 +25,7 @@ const App = () => {
   };
 
   const logoutHandler = () => {
+    localStorage.removeItem('isLoggedIn');
     setIsLoggedIn(false);
   };
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
