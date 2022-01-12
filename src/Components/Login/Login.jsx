@@ -1,8 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import Card from '../UI/Card/Card';
+
+const reducer = (state, action) => {
+  return {
+    enteredEmail: '',
+    emailIsValid: false,
+    enteredPassword: '',
+    passwordIsValid: false,
+    formIsValid: false,
+  };
+};
 
 const Login = (props) => {
   const [enteredEmail, setEnteredEmail] = useState('');
@@ -10,6 +20,8 @@ const Login = (props) => {
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
+
+  const [formState, dispatch] = useReducer(reducer);
 
   useEffect(() => {
     const validationTimeout = setTimeout(() => {
