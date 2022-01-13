@@ -13,7 +13,7 @@ const initialState = {
   formIsValid: false,
 };
 const reducer = (state, action) => {
-  switch (action) {
+  switch (action.type) {
     case 'RESET':
       return initialState;
     case 'EMAIL_INPUT':
