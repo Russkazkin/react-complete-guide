@@ -41,7 +41,7 @@ const Login = (props) => {
     return () => {
       clearTimeout(validationTimeout);
     };
-  }, [formState.enteredPassword, formState.enteredEmail, formState.emailIsValid, formState.passwordIsValid]);
+  }, [formState.emailIsValid, formState.passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     dispatch({ type: 'EMAIL_INPUT', value: event.target.value });
