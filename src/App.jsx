@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Home from './Components/Home/Home';
 import Login from './Components/Login/Login';
 import MainHeader from './Components/MainHeader/MainHeader';
+import AuthContext from './store/AuthContext';
 
 const DUMMY_EXPENSES = [
   { id: 'e1', title: 'Car Insurance', amount: 256.78, date: new Date(2021, 10, 29) },
@@ -33,13 +34,13 @@ const App = () => {
     setExpenses((prevExpenses) => [expense, ...prevExpenses]);
   };
   return (
-    <>
+    <AuthContext.Provider>
       <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home expenses={expenses} onAddExpense={addExpenseHandler} onLogout={logoutHandler} />}
       </main>
-    </>
+    </AuthContext.Provider>
   );
 };
 
