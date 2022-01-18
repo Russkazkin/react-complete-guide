@@ -34,8 +34,8 @@ const App = () => {
     setExpenses((prevExpenses) => [expense, ...prevExpenses]);
   };
   return (
-    <AuthContext.Provider value={{ isLoggedIn }}>
-      <MainHeader isAuthenticated={isLoggedIn} onLogout={logoutHandler} />
+    <AuthContext.Provider value={{ isLoggedIn, onLogout: logoutHandler }}>
+      <MainHeader />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home expenses={expenses} onAddExpense={addExpenseHandler} onLogout={logoutHandler} />}
