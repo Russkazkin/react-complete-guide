@@ -21,13 +21,13 @@ const reducer = (state, action) => {
     case 'EMAIL_INPUT':
       return updateObject(state, { enteredEmail: action.value, emailIsValid: action.value.includes('@') });
     case 'PASSWORD_INPUT':
-      return updateObject(state, { enteredPassword: action.value, passwordIsValid: action.value > 5 });
+      return updateObject(state, { enteredPassword: action.value, passwordIsValid: action.value.length > 5 });
     case 'FORM_VALIDATION':
       return updateObject(state, { formIsValid: action.value });
     case 'EMAIL_VALIDATION':
       return updateObject(state, { emailIsValid: state.enteredEmail.includes('@') });
     case 'PASSWORD_VALIDATION':
-      return updateObject(state, { passwordIsValid: state.enteredPassword > 5 });
+      return updateObject(state, { passwordIsValid: state.enteredPassword.length > 5 });
     default:
       return state;
   }
@@ -74,6 +74,7 @@ const Login = (props) => {
           label="Login"
           type="email"
           id="email"
+          isValid={formState.emailIsValid}
           value={formState.enteredEmail}
           onChange={emailChangeHandler}
           onBlur={validateEmailHandler}
@@ -82,6 +83,7 @@ const Login = (props) => {
           label="Password"
           type="password"
           id="password"
+          isValid={formState.passwordIsValid}
           value={formState.enteredPassword}
           onChange={passwordChangeHandler}
           onBlur={validatePasswordHandler}
