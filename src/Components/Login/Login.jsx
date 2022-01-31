@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer, useRef } from 'react';
 
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
@@ -36,6 +36,8 @@ const reducer = (state, action) => {
 const Login = (props) => {
   const [formState, dispatch] = useReducer(reducer, initialState, f=>f);
   const context = useContext(authContext);
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
 
   useEffect(() => {
     const validationTimeout = setTimeout(() => {
@@ -67,9 +69,9 @@ const Login = (props) => {
     if (formState.formIsValid) {
       context.onLogin(formState.enteredEmail, formState.enteredPassword);
     } else if (!formState.emailIsValid) {
-
+      emailInputRef.current.focus();
     } else {
-
+      passwordInputRef.current.focus();
     }
   };
 
@@ -77,6 +79,7 @@ const Login = (props) => {
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
         <Input
+          ref={emailInputRef}
           label="Login"
           type="email"
           id="email"
@@ -86,6 +89,7 @@ const Login = (props) => {
           onBlur={validateEmailHandler}
         />
         <Input
+          ref={passwordInputRef}
           label="Password"
           type="password"
           id="password"
